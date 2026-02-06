@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
 function cn(...classes: (string | undefined | false)[]) {
@@ -107,13 +108,27 @@ export const NavbarLogo = () => {
 };
 
 export const NavItems = ({ items }: { items: { name: string; link: string }[] }) => {
+    const pathname = usePathname();
+
     return (
         <div className="flex items-center gap-1">
-            {items.map((item, idx) => (
-                <a key={idx} href={item.link} className="px-4 py-2 text-sm text-gray-600 hover:text-[#0C4DA2] font-medium transition-colors hover:bg-blue-50/50 rounded-full">
-                    {item.name}
-                </a>
-            ))}
+            {items.map((item, idx) => {
+                const isActive = pathname === item.link;
+                return (
+                    <a
+                        key={idx}
+                        href={item.link}
+                        className={cn(
+                            "px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
+                            isActive
+                                ? "bg-[#0C4DA2] text-white shadow-md shadow-blue-500/20"
+                                : "text-gray-600 hover:text-[#0C4DA2] hover:bg-blue-50/50"
+                        )}
+                    >
+                        {item.name}
+                    </a>
+                );
+            })}
         </div>
     );
 };

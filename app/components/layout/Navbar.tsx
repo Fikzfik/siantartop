@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCart } from "@/app/context/CartContext";
 
 const navLinks = [
     { href: "/", label: "Dashboard" },
