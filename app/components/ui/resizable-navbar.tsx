@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
 function cn(...classes: (string | undefined | false)[]) {
@@ -17,24 +18,22 @@ export const Navbar = ({ children, className }: { children: React.ReactNode; cla
 
 export const NavBody = ({ children, className }: { children: React.ReactNode; className?: string }) => {
     const { scrollY } = useScroll();
-    const [isScrolled, setIsScrolled] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(true);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
-        const previous = scrollY.getPrevious() ?? 0;
-        // Debounce/Hysteresis logic: only change state if meaningful scroll diff or specific thresholds
-        if (latest > 50 && !isScrolled) {
-            setIsScrolled(true);
-        } else if (latest < 40 && isScrolled) {
-            setIsScrolled(false);
-        }
+        setIsScrolled(latest > 50);
     });
+
+    useEffect(() => {
+        setIsScrolled(window.scrollY > 50);
+    }, []);
 
     return (
         <motion.div
             layout
-            initial={{ width: "100%", maxWidth: "1200px", borderRadius: "9999px" }}
+            initial={{ width: "auto", maxWidth: "850px", borderRadius: "9999px", padding: "0.75rem 1.5rem" }}
             animate={{
-                width: isScrolled ? "auto" : "100%", // 'auto' is smoother than fit-content with layout prop
+                width: isScrolled ? "auto" : "100%",
                 maxWidth: isScrolled ? "850px" : "1200px",
                 y: isScrolled ? 0 : 0,
                 padding: isScrolled ? "0.75rem 1.5rem" : "0.75rem 2rem",
@@ -42,8 +41,8 @@ export const NavBody = ({ children, className }: { children: React.ReactNode; cl
             transition={{
                 type: "spring",
                 stiffness: 300,
-                damping: 30, // Higher damping prevents overshoot/bounciness
-                mass: 0.8 // Lighter mass for quicker response
+                damping: 30,
+                mass: 0.8
             }}
             className={cn(
                 "hidden md:flex pointer-events-auto items-center justify-between bg-white/95 backdrop-blur-md border border-gray-100 mx-auto shadow-[0_8px_30px_rgb(0,0,0,0.04)] gap-4",
@@ -51,7 +50,7 @@ export const NavBody = ({ children, className }: { children: React.ReactNode; cl
                 className
             )}
             style={{
-                borderRadius: "9999px" // Ensure border radius stays consistent
+                borderRadius: "9999px"
             }}
         >
             {children}
@@ -61,18 +60,22 @@ export const NavBody = ({ children, className }: { children: React.ReactNode; cl
 
 export const NavbarLogo = () => {
     const { scrollY } = useScroll();
-    const [isScrolled, setIsScrolled] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(true);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         setIsScrolled(latest > 50);
     });
 
+    useEffect(() => {
+        setIsScrolled(window.scrollY > 50);
+    }, []);
+
     return (
-        <a href="/" className="flex items-center gap-2 mr-2">
+        <Link href="/" className="flex items-center gap-2 mr-2">
             <motion.div
                 layout
                 animate={{
-                    height: 44, // Fixed height
+                    height: 44,
                     width: isScrolled ? 44 : "auto",
                 }}
                 className="relative flex items-center justify-start"
@@ -103,7 +106,7 @@ export const NavbarLogo = () => {
                     )}
                 </AnimatePresence>
             </motion.div>
-        </a>
+        </Link>
     );
 };
 
@@ -115,7 +118,7 @@ export const NavItems = ({ items }: { items: { name: string; link: string }[] })
             {items.map((item, idx) => {
                 const isActive = pathname === item.link;
                 return (
-                    <a
+                    <Link
                         key={idx}
                         href={item.link}
                         className={cn(
@@ -126,7 +129,7 @@ export const NavItems = ({ items }: { items: { name: string; link: string }[] })
                         )}
                     >
                         {item.name}
-                    </a>
+                    </Link>
                 );
             })}
         </div>
