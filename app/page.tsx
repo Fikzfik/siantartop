@@ -63,8 +63,8 @@ export default function Home() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-2">
-            <NavbarButton variant="secondary" onClick={() => window.location.href = '/login'}>
-              Login
+            <NavbarButton variant="secondary" onClick={() => window.location.href = '/career'}>
+              Career
             </NavbarButton>
             <NavbarButton variant="primary" onClick={() => window.location.href = '/cart'} className="flex items-center gap-2">
               <span className="hidden sm:inline">Cart</span>
@@ -101,7 +101,7 @@ export default function Home() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-3 mt-4">
-              <NavbarButton onClick={() => setIsMobileMenuOpen(false)} variant="secondary" className="w-full justify-center">Login</NavbarButton>
+              <NavbarButton onClick={() => { window.location.href = '/career'; setIsMobileMenuOpen(false); }} variant="secondary" className="w-full justify-center">Career</NavbarButton>
               <NavbarButton onClick={() => setIsMobileMenuOpen(false)} variant="primary" className="w-full justify-center flex items-center gap-2">
                 <span>Cart</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

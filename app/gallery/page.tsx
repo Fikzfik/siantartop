@@ -36,8 +36,8 @@ export default function GalleryPage() {
                     <NavItems items={navItems} />
                     {/* Desktop Action Buttons - Hidden on Mobile */}
                     <div className="hidden md:flex items-center gap-2">
-                        <NavbarButton variant="secondary" onClick={() => router.push('/login')}>
-                            Login
+                        <NavbarButton variant="secondary" onClick={() => router.push('/career')}>
+                            Career
                         </NavbarButton>
                         <NavbarButton variant="primary" onClick={() => router.push('/cart')} className="flex items-center gap-2">
                             <span className="hidden sm:inline">Cart</span>
@@ -76,7 +76,7 @@ export default function GalleryPage() {
                             </div>
                         ))}
                         <div className="flex w-full flex-col gap-3 mt-4">
-                            <NavbarButton onClick={() => { router.push('/login'); setIsMobileMenuOpen(false); }} variant="secondary" className="w-full justify-center">Login</NavbarButton>
+                            <NavbarButton onClick={() => { router.push('/career'); setIsMobileMenuOpen(false); }} variant="secondary" className="w-full justify-center">Career</NavbarButton>
                             <NavbarButton onClick={() => { router.push('/cart'); setIsMobileMenuOpen(false); }} variant="primary" className="w-full justify-center flex items-center gap-2">
                                 <span>Cart</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -159,9 +159,22 @@ const cards = [
     {
         id: 1,
         content: <SkeletonOne />,
-        className: "md:col-span-2",
+        className: "md:col-span-1",
         thumbnail:
             "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=3270&auto=format&fit=crop",
+    },
+    {
+        id: 3,
+        content: <SkeletonFour />,
+        className: "md:col-span-2",
+        thumbnail:
+            "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=3270&auto=format&fit=crop",
+    },
+    {
+        id: 6,
+        content: <SkeletonTwo />,
+        className: "md:col-span-2",
+        thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=3270&auto=format&fit=crop"
     },
     {
         id: 2,
@@ -171,18 +184,10 @@ const cards = [
             "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=3270&auto=format&fit=crop",
     },
     {
-        id: 3,
+        id: 7,
         content: <SkeletonThree />,
         className: "col-span-1",
-        thumbnail:
-            "https://images.unsplash.com/photo-1581093458791-9f302e68cc63?q=80&w=3270&auto=format&fit=crop",
-    },
-    {
-        id: 4,
-        content: <SkeletonFour />,
-        className: "md:col-span-2",
-        thumbnail:
-            "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=3270&auto=format&fit=crop",
+        thumbnail: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?q=80&w=3270&auto=format&fit=crop"
     },
     {
         id: 5,
@@ -191,45 +196,39 @@ const cards = [
         thumbnail: "https://images.unsplash.com/photo-1536323760109-ca8c07450053?q=80&w=3270&auto=format&fit=crop"
     },
     {
-        id: 6,
-        content: <SkeletonTwo />,
-        className: "col-span-1",
-        thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=3270&auto=format&fit=crop"
-    },
-    {
-        id: 7,
-        content: <SkeletonThree />,
-        className: "md:col-span-2",
-        thumbnail: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?q=80&w=3270&auto=format&fit=crop"
-    },
-    {
-        id: 8,
-        content: <SkeletonFour />,
-        className: "col-span-1",
-        thumbnail: "https://images.unsplash.com/photo-1566373188540-394e1d683787?q=80&w=3270&auto=format&fit=crop"
-    },
-    {
-        id: 9,
-        content: <SkeletonOne />,
-        className: "md:col-span-2",
-        thumbnail: "https://images.unsplash.com/photo-1565514020176-dbf2277cc2c0?q=80&w=3270&auto=format&fit=crop"
-    },
-    {
-        id: 10,
-        content: <SkeletonTwo />,
-        className: "col-span-1",
-        thumbnail: "https://images.unsplash.com/photo-1605218427387-a2f260341e33?q=80&w=3270&auto=format&fit=crop"
-    },
-    {
-        id: 11,
-        content: <SkeletonThree />,
-        className: "col-span-1",
-        thumbnail: "https://images.unsplash.com/photo-1493612276216-9c782cb70cae?q=80&w=3270&auto=format&fit=crop"
-    },
-    {
         id: 12,
         content: <SkeletonFour />,
-        className: "md:col-span-2",
+        className: "col-span-1",
         thumbnail: "https://images.unsplash.com/photo-1473186578172-c141e6798cf4?q=80&w=3270&auto=format&fit=crop"
+    },
+    {
+        id: 14,
+        content: <SkeletonTwo />,
+        className: "col-span-1",
+        thumbnail: "https://images.unsplash.com/photo-1590247813693-5541d1c609fd?q=80&w=3270&auto=format&fit=crop" // Warehouse shelves
+    },
+    {
+        id: 16,
+        content: <SkeletonFour />,
+        className: "md:col-span-2",
+        thumbnail: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=3270&auto=format&fit=crop" // Meeting
+    },
+    {
+        id: 18,
+        content: <SkeletonTwo />,
+        className: "md:col-span-2",
+        thumbnail: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=3270&auto=format&fit=crop" // Logistics
+    },
+    {
+        id: 17,
+        content: <SkeletonOne />,
+        className: "col-span-1",
+        thumbnail: "https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?q=80&w=3270&auto=format&fit=crop" // Food industry
+    },
+    {
+        id: 20,
+        content: <SkeletonFour />,
+        className: "md:col-span-3",
+        thumbnail: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=3270&auto=format&fit=crop" // Happy employees
     }
 ];
