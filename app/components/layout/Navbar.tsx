@@ -18,7 +18,6 @@ const navLinks = [
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const { totalItems } = useCart();
     const pathname = usePathname();
 
     // Handle scroll effect
@@ -51,8 +50,8 @@ export function Navbar() {
         <>
             <header
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                        ? "bg-white/95 backdrop-blur-xl shadow-lg shadow-black/5 py-2"
-                        : "bg-transparent py-4"
+                    ? "bg-white/95 backdrop-blur-xl shadow-lg shadow-black/5 py-2"
+                    : "bg-transparent py-4"
                     }`}
             >
                 <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,20 +92,20 @@ export function Navbar() {
                                         key={link.href}
                                         href={link.href}
                                         className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 group ${isActive
-                                                ? isScrolled
-                                                    ? "text-[#0C4DA2]"
-                                                    : "text-white"
-                                                : isScrolled
-                                                    ? "text-gray-600 hover:text-[#0C4DA2]"
-                                                    : "text-white/80 hover:text-white"
+                                            ? isScrolled
+                                                ? "text-[#0C4DA2]"
+                                                : "text-white"
+                                            : isScrolled
+                                                ? "text-gray-600 hover:text-[#0C4DA2]"
+                                                : "text-white/80 hover:text-white"
                                             }`}
                                     >
                                         {link.label}
                                         {/* Active indicator */}
                                         <span
                                             className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 rounded-full transition-all duration-300 ${isActive
-                                                    ? "w-6 bg-gradient-to-r from-[#0C4DA2] to-[#8CC63F]"
-                                                    : "w-0 group-hover:w-4 bg-current"
+                                                ? "w-6 bg-gradient-to-r from-[#0C4DA2] to-[#8CC63F]"
+                                                : "w-0 group-hover:w-4 bg-current"
                                                 }`}
                                         />
                                     </Link>
@@ -120,8 +119,8 @@ export function Navbar() {
                             <Link
                                 href="/cart"
                                 className={`relative p-2.5 rounded-xl transition-all duration-300 ${isScrolled
-                                        ? "hover:bg-gray-100 text-gray-700"
-                                        : "hover:bg-white/10 text-white"
+                                    ? "hover:bg-gray-100 text-gray-700"
+                                    : "hover:bg-white/10 text-white"
                                     }`}
                             >
                                 <svg
@@ -137,19 +136,14 @@ export function Navbar() {
                                         d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                                     />
                                 </svg>
-                                {totalItems > 0 && (
-                                    <span className="absolute -top-0.5 -right-0.5 min-w-[20px] h-5 px-1.5 bg-gradient-to-r from-[#8CC63F] to-[#6fa830] text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                                        {totalItems}
-                                    </span>
-                                )}
                             </Link>
 
                             {/* Login Button */}
                             <Link
                                 href="/login"
                                 className={`hidden sm:flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 ${isScrolled
-                                        ? "bg-gradient-to-r from-[#0C4DA2] to-[#0a3d82] text-white hover:shadow-lg hover:shadow-[#0C4DA2]/25 hover:-translate-y-0.5"
-                                        : "bg-white/15 backdrop-blur-sm text-white border border-white/30 hover:bg-white hover:text-[#0C4DA2]"
+                                    ? "bg-gradient-to-r from-[#0C4DA2] to-[#0a3d82] text-white hover:shadow-lg hover:shadow-[#0C4DA2]/25 hover:-translate-y-0.5"
+                                    : "bg-white/15 backdrop-blur-sm text-white border border-white/30 hover:bg-white hover:text-[#0C4DA2]"
                                     }`}
                             >
                                 <svg
@@ -172,8 +166,8 @@ export function Navbar() {
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 className={`lg:hidden relative w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 ${isScrolled
-                                        ? "hover:bg-gray-100 text-gray-700"
-                                        : "hover:bg-white/10 text-white"
+                                    ? "hover:bg-gray-100 text-gray-700"
+                                    : "hover:bg-white/10 text-white"
                                     }`}
                                 aria-label="Toggle menu"
                             >
@@ -206,8 +200,8 @@ export function Navbar() {
             {/* Mobile Menu Overlay */}
             <div
                 className={`fixed inset-0 z-40 transition-all duration-500 lg:hidden ${isMenuOpen
-                        ? "opacity-100 pointer-events-auto"
-                        : "opacity-0 pointer-events-none"
+                    ? "opacity-100 pointer-events-auto"
+                    : "opacity-0 pointer-events-none"
                     }`}
             >
                 {/* Backdrop */}
@@ -261,8 +255,8 @@ export function Navbar() {
                                         href={link.href}
                                         onClick={() => setIsMenuOpen(false)}
                                         className={`flex items-center gap-4 px-4 py-4 rounded-xl transition-all duration-300 ${isActive
-                                                ? "bg-gradient-to-r from-[#0C4DA2] to-[#0a3d82] text-white shadow-lg"
-                                                : "text-gray-700 hover:bg-gray-50"
+                                            ? "bg-gradient-to-r from-[#0C4DA2] to-[#0a3d82] text-white shadow-lg"
+                                            : "text-gray-700 hover:bg-gray-50"
                                             }`}
                                         style={{
                                             transitionDelay: isMenuOpen
@@ -272,8 +266,8 @@ export function Navbar() {
                                     >
                                         <span
                                             className={`w-2 h-2 rounded-full ${isActive
-                                                    ? "bg-[#8CC63F]"
-                                                    : "bg-gray-300"
+                                                ? "bg-[#8CC63F]"
+                                                : "bg-gray-300"
                                                 }`}
                                         />
                                         <span className="text-base font-medium">
